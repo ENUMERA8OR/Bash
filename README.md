@@ -8,5 +8,5 @@
 
 3.Subdomain Finder: This bash script reads a domain from the user and then checks for the existence of subdomains listed in a file named "subdomains.txt". It uses the host command to resolve the IP address of each subdomain. If the subdomain exists, it prints the corresponding IP address.
 
-
+4. IDS.sh: A simple Intrusion Detection System(work in progress)
 

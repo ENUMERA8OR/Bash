@@ -1,5 +1,7 @@
 # Bash
-Bash Cybersecurity Projects
+
+-->Bash Cybersecurity Projects
+
 1. Password Strength Checker & Generator: The bash script functions to check the strength of a password and generate a random password. It first checks the entered password for length, presence of numbers, uppercase letters, lowercase letters, and special characters. Depending on these criteria, it classifies the password as weak, strong, or hard. If the user chooses to generate a password, it generates a random string of the specified length.
 
 

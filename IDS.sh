@@ -4,20 +4,20 @@ main() {
     
     # Implementation
     echo "Insert your log file"
-    read -p "Log file entered" file_name_path
+    read -r -p "Log file entered" file_name_path
     read_log_file "$file_name_path"
 }
 
 # Reads the log file line by line
-read_log_file(file_name_path) {
+read_log_file() {
     # Implementation
 
-    while read file_name_path; do
-    echo "$file_name_path"
+    while read -r "$1"; do
+    echo "$1"
     done 
 
-    send_alert "$file_name_path"
-    handle_false_positives "$file_name_path"
+    send_alert "$1"
+    handle_false_positives "$1"
 
 }
 
@@ -25,23 +25,23 @@ read_log_file(file_name_path) {
 upload_threat_signatures() {
     # Implementation
     echo "Insert your threat signature file"
-    read -p "Threat signature file entered" sig_file_path
+    read -r -p "Threat signature file entered" sig_file_path
     send_alert "$sig_file_path"
     handle_false_positives "$sig_file_path"
 }
 
 # Handles false positives
-handle_false_positives(file_name_path,sig_file_path) {
+handle_false_positives() {
     # Implementation
-    readarray -t array3 < $file_name_path
-    readarray -t array4 < $sig_file_path
+    readarray -t array3 < "$1"
+    readarray -t array4 < "$2"
 }
 
 # Alerts the system administrator
-send_alert(file_name_path,sig_file_path) {
+send_alert() {
     # Implementation
-    readarray -t array1 < $file_name_path
-    readarray -t array2 < $sig_file_path
+    readarray -t array1 < "$1"
+    readarray -t array2 < "$2"
 
     for compare1 in "${array1[@]}"; do
 
@@ -50,10 +50,10 @@ send_alert(file_name_path,sig_file_path) {
         for compare2 in "${array2[@]}"; do
 
             line_count2=0
-            line_count1=line_count1 + 1
-            line_count2=line_count2 + 1 
+            line_count1=$((line_count1 + 1))
+            line_count2=$((line_count2 + 1)) 
 
-            if [[ $compare1 -eq $compare2 ]];then
+            if [[ $compare1 = "$compare2" ]];then
 
                 echo "Match detected!"
                 echo "Signature rule at line $line_count2."
